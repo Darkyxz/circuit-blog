@@ -7,10 +7,6 @@ const nextConfig = {
       "res.cloudinary.com"
     ]
   },
-  // Deshabilitar SSG para páginas problemáticas
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
 }
 
 module.exports = nextConfig
