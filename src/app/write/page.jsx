@@ -13,7 +13,13 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
-import ReactQuill from "react-quill";
+import dynamic from "next/dynamic";
+
+// Forzar renderizado dinámico
+export const dynamic = 'force-dynamic';
+
+// Importar ReactQuill dinámicamente para evitar errores de SSR
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const WritePage = () => {
   const { status } = useSession();

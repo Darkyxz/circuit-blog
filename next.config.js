@@ -6,7 +6,11 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "res.cloudinary.com"
     ]
-  }
+  },
+  // Deshabilitar SSG para páginas problemáticas
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 }
 
 module.exports = nextConfig
