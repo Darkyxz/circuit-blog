@@ -81,7 +81,7 @@ const ContactPage = () => {
           <p className={styles.text}>
             Nos comprometemos a responder todos los mensajes en un plazo de 24-48 horas 
             durante días laborables. Para consultas urgentes, por favor especifica 
-            "URGENTE" en el asunto del email.
+            &quot;URGENTE&quot; en el asunto del email.
           </p>
         </div>
       </div>
