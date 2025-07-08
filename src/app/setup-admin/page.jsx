@@ -125,7 +125,7 @@ const SetupAdminPage = () => {
         <h3>Instrucciones:</h3>
         <ol>
           <li>Verifica tu estado actual de admin</li>
-          <li>Si no eres admin, haz clic en "Convertirme en Admin"</li>
+          <li>Si no eres admin, haz clic en &quot;Convertirme en Admin&quot;</li>
           <li>Una vez configurado, podrás acceder a /admin</li>
           <li>Esta página se puede eliminar después de la configuración</li>
         </ol>
