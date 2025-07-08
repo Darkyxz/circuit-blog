@@ -6,6 +6,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { formatDate } from "@/utils/dateFormatter";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -72,7 +73,7 @@ const Comments = ({ postSlug }) => {
                   )}
                   <div className={styles.userInfo}>
                     <span className={styles.username}>{item.user.name}</span>
-                    <span className={styles.date}>{item.createdAt}</span>
+                    <span className={styles.date}>{formatDate(item.createdAt)}</span>
                   </div>
                 </div>
                 <p className={styles.desc}>{item.desc}</p>

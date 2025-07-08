@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAdminStatus } from '@/hooks/useAdminStatus';
+import { formatDate } from '@/utils/dateFormatter';
 import styles from '../admin.module.css';
 
 const AdminPosts = () => {
@@ -166,7 +167,7 @@ const AdminPosts = () => {
                   </button>
                 </td>
                 <td>{post.views}</td>
-                <td>{new Date(post.createdAt).toLocaleDateString()}</td>
+                <td>{formatDate(post.createdAt)}</td>
                 <td>
                   <div className={styles.actionBtns}>
                     <Link href={`/posts/${post.slug}`} className={styles.viewBtn}>
