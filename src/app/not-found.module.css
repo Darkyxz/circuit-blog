@@ -1,0 +1,130 @@
+.container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.content {
+  text-align: center;
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  max-width: 600px;
+  width: 100%;
+}
+
+.errorCode {
+  font-size: 8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--textColor);
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--softTextColor);
+  margin-bottom: 40px;
+}
+
+.actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.homeBtn,
+.blogBtn {
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.homeBtn {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.homeBtn:hover {
+  background: var(--primaryHover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.blogBtn {
+  background: var(--softBg);
+  color: var(--textColor);
+  border: 2px solid var(--border);
+}
+
+.blogBtn:hover {
+  border-color: var(--primary);
+  background: var(--primaryLight);
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 40px 25px;
+  }
+  
+  .errorCode {
+    font-size: 6rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .homeBtn,
+  .blogBtn {
+    width: 200px;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content {
+    padding: 30px 20px;
+  }
+  
+  .errorCode {
+    font-size: 4rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+}

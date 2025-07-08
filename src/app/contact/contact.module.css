@@ -1,0 +1,163 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px);
+}
+
+.content {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--textColor);
+  margin-bottom: 40px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--textColor);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 10px;
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--softTextColor);
+  margin-bottom: 20px;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.contactCard {
+  background: var(--softBg);
+  padding: 25px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  text-align: center;
+}
+
+.contactCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.cardIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--textColor);
+  margin-bottom: 10px;
+}
+
+.cardText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--softTextColor);
+  margin-bottom: 15px;
+}
+
+.cardLink {
+  font-size: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cardLink:hover {
+  color: var(--primaryHover);
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.socialLink {
+  font-size: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  paddling: 10px 15px;
+}
+
+.socialLink:hover {
+  color: var(--primaryHover);
+}
+
+.socialIcon {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
+  
+  .content {
+    padding: 25px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .contactCard {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .text {
+    font-size: 1rem;
+  }
+}
