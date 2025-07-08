@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./featured.module.css";
-import Image from "next/image";
+import ClickableImage from "@/components/ui/ClickableImage";
 
 const Featured = () => {
   return (
@@ -9,9 +9,12 @@ const Featured = () => {
         <b>¡Hola, soy Circuit Dev!</b> Descubre el mundo de la tecnología y programación.
       </h1>
       <div className={styles.post}>
-        <div className={styles.imgContainer}>
-          <Image src="/p1.jpeg" alt="" fill className={styles.image} />
-        </div>
+        <ClickableImage
+          src="/p1.jpeg"
+          alt="Imagen destacada del blog Circuit Dev"
+          containerClassName={styles.imgContainer}
+          className={styles.image}
+        />
         <div className={styles.textContainer}>
           <h1 className={styles.postTitle}>Explora las últimas tendencias en tecnología y desarrollo</h1>
           <p className={styles.postDesc}>

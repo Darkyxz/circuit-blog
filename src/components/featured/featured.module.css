@@ -23,15 +23,13 @@
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  background-color: var(--softBg);
 }
 
 .image {
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.image:hover {
-  transform: scale(1.05);
+  width: 100%;
+  height: 100%;
 }
 
 .textContainer {

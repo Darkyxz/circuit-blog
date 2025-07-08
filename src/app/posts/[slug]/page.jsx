@@ -1,6 +1,7 @@
 import Menu from "@/components/Menu/Menu";
 import styles from "./singlePage.module.css";
 import Image from "next/image";
+import ClickableImage from "@/components/ui/ClickableImage";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
@@ -38,9 +39,12 @@ const SinglePage = async ({ params }) => {
           </div>
         </div>
         {data?.img && (
-          <div className={styles.imageContainer}>
-            <Image src={data.img} alt="" fill className={styles.image} />
-          </div>
+          <ClickableImage
+            src={data.img}
+            alt={data.title || "Post image"}
+            containerClassName={styles.imageContainer}
+            className={styles.image}
+          />
         )}
       </div>
       <div className={styles.content}>

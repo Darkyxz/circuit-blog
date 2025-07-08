@@ -1,0 +1,48 @@
+.imageContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.image {
+  transition: transform 0.3s ease-out;
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.05);
+}
+
+.zoomIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+  transition: background 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.zoomIcon svg {
+  color: white;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .zoomIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .zoomIcon svg {
+    width: 18px;
+    height: 18px;
+  }
+}

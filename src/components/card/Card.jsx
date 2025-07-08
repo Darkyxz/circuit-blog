@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ClickableImage from "@/components/ui/ClickableImage";
 import styles from "./card.module.css";
 import Link from "next/link";
 
@@ -6,9 +6,12 @@ const Card = ({ key, item }) => {
   return (
     <div className={styles.container} key={key}>
       {item.img && (
-        <div className={styles.imageContainer}>
-          <Image src={item.img} alt="" fill className={styles.image} />
-        </div>
+        <ClickableImage
+          src={item.img}
+          alt={item.title || "Blog post image"}
+          containerClassName={styles.imageContainer}
+          className={styles.image}
+        />
       )}
       <div className={styles.textContainer}>
         <div className={styles.detail}>

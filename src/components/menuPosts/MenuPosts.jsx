@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ClickableImage from "@/components/ui/ClickableImage";
 import Link from "next/link";
 import React from "react";
 import styles from "./menuPosts.module.css"
@@ -8,9 +8,13 @@ const MenuPosts = ({ withImage }) => {
     <div className={styles.items}>
       <Link href="/blog?cat=artificial-intelligence" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
-            <Image src="/p1.jpeg" alt="" fill className={styles.image} />
-          </div>
+          <ClickableImage
+            src="/p1.jpeg"
+            alt="Imagen del post sobre IA"
+            containerClassName={styles.imageContainer}
+            className={styles.image}
+            showZoomIcon={false}
+          />
         )}
         <div className={styles.textContainer}>
           <span className={`${styles.category} ${styles.ai}`}>Inteligencia Artificial</span>
@@ -25,9 +29,13 @@ const MenuPosts = ({ withImage }) => {
       </Link>
       <Link href="/blog?cat=programming" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
-            <Image src="/p1.jpeg" alt="" fill className={styles.image} />
-          </div>
+          <ClickableImage
+            src="/p1.jpeg"
+            alt="Imagen del post sobre programación"
+            containerClassName={styles.imageContainer}
+            className={styles.image}
+            showZoomIcon={false}
+          />
         )}
         <div className={styles.textContainer}>
           <span className={`${styles.category} ${styles.programming}`}>
@@ -44,9 +52,13 @@ const MenuPosts = ({ withImage }) => {
       </Link>
       <Link href="/blog?cat=docker" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
-            <Image src="/p1.jpeg" alt="" fill className={styles.image} />
-          </div>
+          <ClickableImage
+            src="/p1.jpeg"
+            alt="Imagen del post sobre Docker"
+            containerClassName={styles.imageContainer}
+            className={styles.image}
+            showZoomIcon={false}
+          />
         )}
         <div className={styles.textContainer}>
           <span className={`${styles.category} ${styles.docker}`}>Docker</span>
@@ -61,9 +73,13 @@ const MenuPosts = ({ withImage }) => {
       </Link>
       <Link href="/blog?cat=gaming" className={styles.item}>
         {withImage && (
-          <div className={styles.imageContainer}>
-            <Image src="/p1.jpeg" alt="" fill className={styles.image} />
-          </div>
+          <ClickableImage
+            src="/p1.jpeg"
+            alt="Imagen del post sobre gaming"
+            containerClassName={styles.imageContainer}
+            className={styles.image}
+            showZoomIcon={false}
+          />
         )}
         <div className={styles.textContainer}>
           <span className={`${styles.category} ${styles.gaming}`}>
