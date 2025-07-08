@@ -1,10 +1,13 @@
 .container {
   margin-top: 50px;
-  padding: 20px 0px;
+  padding: 60px 0px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   color: var(--softTextColor);
+  border-top: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--softBg), var(--bg));
+  box-shadow: var(--shadow-lg);
 }
 
 .info {
@@ -20,8 +23,20 @@
   gap: 10px;
 }
 
+.logoIcon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .logoText {
   font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .desc {
@@ -46,10 +61,43 @@
   flex-direction: column;
   gap: 10px;
   font-weight: 300;
+  min-width: 120px;
+}
+
+.list a {
+  color: var(--softTextColor);
+  text-decoration: none;
+  transition: var(--transition);
+  padding: 6px 0;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.list a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.list a:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.list a:hover::before {
+  width: 100%;
 }
 
 .listTitle {
   font-weight: bold;
+  color: var(--textColor);
+  margin-bottom: 5px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -60,16 +108,38 @@
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
-    gap: 50px;
+    gap: 40px;
+    padding: 30px 20px;
+  }
+
+  .info {
+    text-align: center;
   }
 
   .links {
     width: 100%;
     justify-content: space-between;
+    gap: 40px;
   }
 }
+
 @media screen and (max-width: 640px) {
+  .container {
+    padding: 25px 15px;
+  }
+
   .links {
     font-size: 14px;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .list {
+    align-items: center;
+  }
+
+  .logoText {
+    font-size: 20px;
   }
 }

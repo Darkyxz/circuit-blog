@@ -15,36 +15,96 @@
 .category {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-transform: capitalize;
   width: 15%;
-  height: 80px;
+  height: 90px;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
 }
 
-.category.style {
-  background-color: #57c4ff31;
+/* Programming - Blue */
+.category.programming {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
 }
 
-.category.fashion {
-  background-color: #da85c731;
+/* AI - Purple */
+.category.artificial-intelligence {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: white;
 }
 
-.category.food {
-  background-color: #7fb88133;
+/* Gaming - Green */
+.category.gaming {
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
 }
 
-.category.travel {
-  background-color: #ff795736;
+/* Docker - Cyan */
+.category.docker {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: white;
 }
 
-.category.culture {
-  background-color: #ffb04f45;
+/* MCPs - Indigo */
+.category.mcps {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
 }
 
-.category.coding {
-  background-color: #5e4fff31;
+/* Web Development - Orange */
+.category.web-development {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+/* Mobile Development - Teal */
+.category.mobile-development {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  color: white;
+}
+
+/* DevOps - Red */
+.category.devops {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+/* Machine Learning - Pink */
+.category.machine-learning {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: white;
+}
+
+/* Cybersecurity - Emerald */
+.category.cybersecurity {
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+}
+
+/* Blockchain - Amber */
+.category.blockchain {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+/* Cloud Computing - Sky */
+.category.cloud-computing {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+}
+
+.category:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .image {

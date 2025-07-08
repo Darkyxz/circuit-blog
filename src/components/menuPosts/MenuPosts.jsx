@@ -6,75 +6,75 @@ import styles from "./menuPosts.module.css"
 const MenuPosts = ({ withImage }) => {
   return (
     <div className={styles.items}>
-      <Link href="/" className={styles.item}>
+      <Link href="/blog?cat=artificial-intelligence" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
             <Image src="/p1.jpeg" alt="" fill className={styles.image} />
           </div>
         )}
         <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.travel}`}>Travel</span>
+          <span className={`${styles.category} ${styles.ai}`}>Inteligencia Artificial</span>
           <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Cómo la IA está revolucionando el desarrollo de software moderno
           </h3>
           <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
+            <span className={styles.username}>Circuit Dev</span>
+            <span className={styles.date}>- 08.01.2025</span>
           </div>
         </div>
       </Link>
-      <Link href="/" className={styles.item}>
+      <Link href="/blog?cat=programming" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
             <Image src="/p1.jpeg" alt="" fill className={styles.image} />
           </div>
         )}
         <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.culture}`}>
-            Culture
+          <span className={`${styles.category} ${styles.programming}`}>
+            Programación
           </span>
           <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Las mejores prácticas de código limpio en JavaScript y TypeScript
           </h3>
           <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
+            <span className={styles.username}>Circuit Dev</span>
+            <span className={styles.date}>- 07.01.2025</span>
           </div>
         </div>
       </Link>
-      <Link href="/" className={styles.item}>
+      <Link href="/blog?cat=docker" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
             <Image src="/p1.jpeg" alt="" fill className={styles.image} />
           </div>
         )}
         <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.food}`}>Food</span>
+          <span className={`${styles.category} ${styles.docker}`}>Docker</span>
           <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Guía completa para containerizar aplicaciones Next.js con Docker
           </h3>
           <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
+            <span className={styles.username}>Circuit Dev</span>
+            <span className={styles.date}>- 06.01.2025</span>
           </div>
         </div>
       </Link>
-      <Link href="/" className={styles.item}>
+      <Link href="/blog?cat=gaming" className={styles.item}>
         {withImage && (
           <div className={styles.imageContainer}>
             <Image src="/p1.jpeg" alt="" fill className={styles.image} />
           </div>
         )}
         <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.fashion}`}>
-            Fashion
+          <span className={`${styles.category} ${styles.gaming}`}>
+            Gaming
           </span>
           <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Desarrollando juegos web con Canvas API y WebGL: Tutorial práctico
           </h3>
           <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
+            <span className={styles.username}>Circuit Dev</span>
+            <span className={styles.date}>- 05.01.2025</span>
           </div>
         </div>
       </Link>

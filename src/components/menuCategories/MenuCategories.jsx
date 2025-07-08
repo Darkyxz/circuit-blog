@@ -6,25 +6,25 @@ const MenuCategories = () => {
   return (
     <div className={styles.categoryList}>
       <Link
-        href="/blog?cat=style"
-        className={`${styles.categoryItem} ${styles.style}`}
+        href="/blog?cat=programming"
+        className={`${styles.categoryItem} ${styles.programming}`}
       >
-        Style
+        Programación
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.fashion}`}>
-        Fashion
+      <Link href="/blog?cat=artificial-intelligence" className={`${styles.categoryItem} ${styles.ai}`}>
+        Inteligencia Artificial
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.food}`}>
-        Food
+      <Link href="/blog?cat=gaming" className={`${styles.categoryItem} ${styles.gaming}`}>
+        Gaming
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.travel}`}>
-        Travel
+      <Link href="/blog?cat=docker" className={`${styles.categoryItem} ${styles.docker}`}>
+        Docker
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.culture}`}>
-        Culture
+      <Link href="/blog?cat=web-development" className={`${styles.categoryItem} ${styles.webdev}`}>
+        Desarrollo Web
       </Link>
-      <Link href="/blog" className={`${styles.categoryItem} ${styles.coding}`}>
-        Coding
+      <Link href="/blog?cat=machine-learning" className={`${styles.categoryItem} ${styles.ml}`}>
+        Machine Learning
       </Link>
     </div>
   );

@@ -1,0 +1,599 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--textColor);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--softTextColor);
+}
+
+/* Estadísticas */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.statCard {
+  background: var(--softBg);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--softTextColor);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.statCard h3 {
+  font-size: 1rem;
+  color: var(--softTextColor);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--textColor);
+  margin: 0;
+}
+
+/* Navegación */
+.navigationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.navCard {
+  background: var(--softBg);
+  padding: 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--textColor);
+  border: 1px solid var(--softTextColor);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.navCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: #007acc;
+}
+
+.navCard h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--textColor);
+}
+
+.navCard p {
+  color: var(--softTextColor);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Posts recientes */
+.recentSection {
+  margin-top: 40px;
+}
+
+.recentSection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--textColor);
+}
+
+.postsList {
+  background: var(--softBg);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--softTextColor);
+}
+
+.postItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--softTextColor);
+}
+
+.postItem:last-child {
+  border-bottom: none;
+}
+
+.postInfo h4 {
+  margin: 0 0 5px 0;
+  color: var(--textColor);
+  font-size: 1.1rem;
+}
+
+.postInfo p {
+  margin: 0 0 5px 0;
+  color: var(--softTextColor);
+  font-size: 0.9rem;
+}
+
+.postDate {
+  font-size: 0.8rem;
+  color: var(--softTextColor);
+}
+
+.postStats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.postStats span {
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--textColor);
+}
+
+/* Error */
+.error {
+  text-align: center;
+  padding: 40px;
+  color: var(--textColor);
+}
+
+/* Tabla de posts */
+.tableContainer {
+  background: var(--softBg);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--softTextColor);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--softTextColor);
+}
+
+.table th {
+  background: var(--bg);
+  font-weight: 600;
+  color: var(--textColor);
+  font-size: 0.9rem;
+}
+
+.table td {
+  color: var(--textColor);
+  font-size: 0.9rem;
+}
+
+.postImage {
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.noImage {
+  width: 50px;
+  height: 50px;
+  background: var(--bg);
+  border: 1px dashed var(--softTextColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--softTextColor);
+  border-radius: 4px;
+}
+
+.postTitle {
+  color: var(--textColor);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.postTitle:hover {
+  text-decoration: underline;
+}
+
+/* Botones de estado */
+.statusBtn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.published {
+  background: #22c55e;
+  color: white;
+}
+
+.draft {
+  background: #f59e0b;
+  color: white;
+}
+
+.archived {
+  background: #6b7280;
+  color: white;
+}
+
+/* Botones de acción */
+.actionBtns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.viewBtn,
+.deleteBtn {
+  padding: 6px;
+  border: none;
+  background: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.viewBtn {
+  color: #3b82f6;
+}
+
+.viewBtn:hover {
+  background: #dbeafe;
+}
+
+.deleteBtn {
+  color: #ef4444;
+}
+
+.deleteBtn:hover {
+  background: #fecaca;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Header con acciones */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.backBtn,
+.createBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.backBtn {
+  background: var(--softBg);
+  color: var(--textColor);
+  border: 1px solid var(--softTextColor);
+}
+
+.backBtn:hover {
+  background: var(--bg);
+}
+
+.createBtn {
+  background: #22c55e;
+  color: white;
+}
+
+.createBtn:hover {
+  background: #16a34a;
+}
+
+/* Estado vacío */
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: var(--softTextColor);
+}
+
+.emptyState p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: var(--textColor);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    padding: 18px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .tableContainer {
+    padding: 15px;
+  }
+  
+  .table {
+    font-size: 0.85rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin-top: 0;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .actions {
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .backBtn,
+  .createBtn {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+  
+  .statCard {
+    padding: 15px;
+  }
+  
+  .navigationGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .postItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 0;
+  }
+  
+  .postStats {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .tableContainer {
+    padding: 12px;
+    margin: 0 -5px;
+  }
+  
+  .table {
+    font-size: 0.75rem;
+    min-width: 600px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px 4px;
+    white-space: nowrap;
+  }
+  
+  .table th:first-child,
+  .table td:first-child {
+    padding-left: 8px;
+  }
+  
+  .table th:last-child,
+  .table td:last-child {
+    padding-right: 8px;
+  }
+  
+  .postTitle {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  }
+  
+  .actionBtns {
+    gap: 4px;
+  }
+  
+  .viewBtn,
+  .deleteBtn {
+    padding: 4px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .backBtn,
+  .createBtn {
+    width: 100%;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .statCard {
+    padding: 12px;
+  }
+  
+  .statNumber {
+    font-size: 2rem;
+  }
+  
+  .tableContainer {
+    padding: 8px;
+    margin: 0 -8px;
+  }
+  
+  .table {
+    font-size: 0.7rem;
+    min-width: 500px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 6px 2px;
+  }
+  
+  .postTitle {
+    max-width: 80px;
+  }
+  
+  .noImage {
+    width: 40px;
+    height: 40px;
+    font-size: 0.6rem;
+  }
+  
+  .postImage {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .tableContainer {
+    padding: 6px;
+    margin: 0 -6px;
+  }
+  
+  .table {
+    font-size: 0.65rem;
+    min-width: 450px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 4px 1px;
+  }
+  
+  .postTitle {
+    max-width: 60px;
+  }
+  
+  .statusBtn {
+    padding: 2px 4px;
+    font-size: 0.7rem;
+  }
+  
+  .actionBtns {
+    gap: 2px;
+  }
+  
+  .viewBtn,
+  .deleteBtn {
+    padding: 2px;
+    font-size: 0.8rem;
+  }
+}

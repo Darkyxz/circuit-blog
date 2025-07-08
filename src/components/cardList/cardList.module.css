@@ -5,3 +5,52 @@
 .title{
   margin: 50px 0px;
 }
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: var(--softBg);
+  border-radius: 12px;
+  color: var(--textColor);
+  text-align: center;
+}
+
+.error button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--textColor);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.error button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--softTextColor);
+}
+
+.empty p {
+  font-size: 1.1rem;
+  margin: 0;
+}

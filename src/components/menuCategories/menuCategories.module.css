@@ -12,26 +12,38 @@
   font-size: 14px;
 }
 
-.categoryItem.style {
-  background-color: #57c4ff31;
-}
-
-.categoryItem.fashion {
-  background-color: #da85c731;
-}
-
-.categoryItem.food {
-  background-color: #7fb88133;
-}
-
-.categoryItem.travel {
-  background-color: #ff795736;
-}
-
-.categoryItem.culture {
-  background-color: #ffb04f45;
-}
-
-.categoryItem.coding {
+.categoryItem.programming {
   background-color: #5e4fff31;
+  color: #5e4fff;
+}
+
+.categoryItem.ai {
+  background-color: #ff6b6b31;
+  color: #ff6b6b;
+}
+
+.categoryItem.gaming {
+  background-color: #4ecdc431;
+  color: #4ecdc4;
+}
+
+.categoryItem.docker {
+  background-color: #1e90ff31;
+  color: #1e90ff;
+}
+
+.categoryItem.webdev {
+  background-color: #ff952931;
+  color: #ff9529;
+}
+
+.categoryItem.ml {
+  background-color: #6c5ce731;
+  color: #6c5ce7;
+}
+
+.categoryItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }

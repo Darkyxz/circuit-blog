@@ -19,11 +19,11 @@ const CategoryList = async () => {
   const data = await getData();
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Popular Categories</h1>
+      <h1 className={styles.title}>Categorías Tecnológicas</h1>
       <div className={styles.categories}>
         {data?.map((item) => (
           <Link
-            href="/blog?cat=style"
+            href={`/blog?cat=${item.slug}`}
             className={`${styles.category} ${styles[item.slug]}`}
             key={item._id}
           >

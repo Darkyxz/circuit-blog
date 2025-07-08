@@ -6,21 +6,21 @@ const Featured = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
-        <b>Hey, lama dev here!</b> Discover my stories and creative ideas.
+        <b>¡Hola, soy Circuit Dev!</b> Descubre el mundo de la tecnología y programación.
       </h1>
       <div className={styles.post}>
         <div className={styles.imgContainer}>
           <Image src="/p1.jpeg" alt="" fill className={styles.image} />
         </div>
         <div className={styles.textContainer}>
-          <h1 className={styles.postTitle}>Lorem ipsum dolor sit amet alim consectetur adipisicing elit.</h1>
+          <h1 className={styles.postTitle}>Explora las últimas tendencias en tecnología y desarrollo</h1>
           <p className={styles.postDesc}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Cupiditate, quam nisi magni ea laborum inventore voluptatum
-            laudantium repellat ducimus unde aspernatur fuga. Quo, accusantium
-            quisquam! Harum unde sit culpa debitis.
+            Desde inteligencia artificial hasta desarrollo web, pasando por Docker, 
+            gaming y machine learning. Mantente al día con las tecnologías que están 
+            revolucionando el mundo digital. Aprende, experimenta y crea con las 
+            herramientas más avanzadas del desarrollo moderno.
           </p>
-          <button className={styles.button}>Read More</button>
+          <button className={styles.button}>Leer Más</button>
         </div>
       </div>
     </div>
