@@ -1,6 +1,14 @@
 .container {
-  flex: 2;
+  flex: 2.5;
   margin-top: 60px;
+  min-width: 280px;
+}
+
+/* Protect menu from global text wrapping styles */
+.container * {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: normal;
 }
 
 .subtitle {

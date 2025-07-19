@@ -255,11 +255,102 @@
 /* Botones de acción */
 .actionBtns {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 
+/* Estilos para gestión de usuarios */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--textColor);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  background-color: var(--softBg);
+}
+
+.filterBtn.active {
+  background-color: var(--textColor);
+  color: var(--bg);
+  border-color: var(--textColor);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userName {
+  font-weight: 500;
+}
+
+.roleSelect {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.roleSelect.user {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.roleSelect.author {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.roleSelect.editor {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.roleSelect.admin {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.statusBtn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.statusBtn.active {
+  background-color: #10b981;
+  color: white;
+}
+
+.statusBtn.inactive {
+  background-color: #ef4444;
+  color: white;
+}
+
+.statusBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .viewBtn,
+.editBtn,
 .deleteBtn {
   padding: 6px;
   border: none;
@@ -268,6 +359,10 @@
   cursor: pointer;
   border-radius: 4px;
   transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .viewBtn {
@@ -276,6 +371,14 @@
 
 .viewBtn:hover {
   background: #dbeafe;
+}
+
+.editBtn {
+  color: #10b981;
+}
+
+.editBtn:hover {
+  background: #d1fae5;
 }
 
 .deleteBtn {

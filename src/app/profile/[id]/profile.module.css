@@ -1,0 +1,393 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.2rem;
+  color: var(--textColor);
+}
+
+.error {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--textColor);
+}
+
+.error h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.backBtn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--softBg);
+  color: var(--textColor);
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid var(--softTextColor);
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background: var(--textColor);
+  color: var(--bg);
+}
+
+/* Profile Header */
+.profileHeader {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: var(--softBg);
+  border-radius: 16px;
+  border: 1px solid var(--softTextColor);
+}
+
+.avatarSection {
+  flex-shrink: 0;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--textColor);
+}
+
+.avatarPlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border: 4px solid var(--softTextColor);
+}
+
+.userInfo {
+  flex: 1;
+}
+
+.nameSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.userName {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--textColor);
+  margin: 0;
+}
+
+.roleBadge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.userEmail {
+  color: var(--softTextColor);
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.userBio {
+  color: var(--textColor);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  max-width: 600px;
+}
+
+.userMeta {
+  margin-bottom: 20px;
+}
+
+.joinDate {
+  color: var(--softTextColor);
+  font-size: 0.9rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--bg);
+  color: var(--textColor);
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid var(--softTextColor);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--textColor);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+/* Stats Section */
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.statCard {
+  background: var(--softBg);
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--softTextColor);
+  transition: transform 0.2s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+}
+
+.statCard h3 {
+  font-size: 1rem;
+  color: var(--softTextColor);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--textColor);
+  margin: 0;
+}
+
+/* Posts Section */
+.postsSection {
+  margin-top: 40px;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  color: var(--textColor);
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--softTextColor);
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.postCard {
+  background: var(--softBg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--softTextColor);
+  transition: all 0.3s ease;
+}
+
+.postCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.postImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.postImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.postCard:hover .postImage img {
+  transform: scale(1.05);
+}
+
+.postContent {
+  padding: 20px;
+}
+
+.postTitle {
+  margin-bottom: 12px;
+}
+
+.postTitle a {
+  color: var(--textColor);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.postTitle a:hover {
+  color: #007acc;
+}
+
+.postDesc {
+  color: var(--softTextColor);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.postMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--softTextColor);
+}
+
+.postDate,
+.postCategory,
+.postViews {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.postCategory {
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.noPosts {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--softBg);
+  border-radius: 12px;
+  border: 1px solid var(--softTextColor);
+}
+
+.noPosts p {
+  font-size: 1.1rem;
+  color: var(--softTextColor);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  .profileHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .nameSection {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .userName {
+    font-size: 1.5rem;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+
+  .statsSection {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .statCard {
+    padding: 20px;
+  }
+
+  .statNumber {
+    font-size: 2rem;
+  }
+
+  .postsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .postMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 10px;
+  }
+
+  .profileHeader {
+    padding: 15px;
+  }
+
+  .avatar,
+  .avatarPlaceholder {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatarPlaceholder {
+    font-size: 2.5rem;
+  }
+
+  .userName {
+    font-size: 1.3rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+  }
+
+  .postContent {
+    padding: 15px;
+  }
+
+  .socialLink {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}

@@ -6,6 +6,13 @@
   gap: 20px;
 }
 
+/* Protect menu categories from global text wrapping styles */
+.categoryList * {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+
 .categoryItem {
   padding: 10px 25px;
   border-radius: 10px;

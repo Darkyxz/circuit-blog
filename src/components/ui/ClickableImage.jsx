@@ -11,6 +11,7 @@ const ClickableImage = ({
   className = "", 
   containerClassName = "",
   showZoomIcon = true,
+  priority = false,
   ...props 
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,6 +36,7 @@ const ClickableImage = ({
           fill
           className={`${styles.image} ${className}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={priority}
           {...props}
         />
         {showZoomIcon && (

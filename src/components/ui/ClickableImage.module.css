@@ -1,15 +1,19 @@
 .imageContainer {
   position: relative;
   cursor: pointer;
+  /* Ensure minimum height to avoid warning - but respect parent container dimensions */
+  min-height: 50px;
+}
+
+/* Override min-height for circular images in menu */
+.imageContainer[style*="aspect-ratio: 1/1"] {
+  min-height: unset;
 }
 
 .image {
-  transition: transform 0.3s ease-out;
+  /* Transition now handled in JavaScript */
 }
 
-.imageContainer:hover .image {
-  transform: scale(1.05);
-}
 
 .zoomIcon {
   position: absolute;

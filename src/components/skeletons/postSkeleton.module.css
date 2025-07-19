@@ -1,0 +1,174 @@
+/* PostSkeleton.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titleSkeleton {
+  width: 60%;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatarSkeleton {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nameSkeleton {
+  width: 100px;
+  height: 16px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.dateSkeleton {
+  width: 80px;
+  height: 14px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.imageSkeleton {
+  width: 400px;
+  height: 200px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.content {
+  display: flex;
+  gap: 50px;
+}
+
+.post {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.descriptionSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textLine {
+  height: 16px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.textLine:nth-child(even) {
+  width: 90%;
+}
+
+.textLine:last-child {
+  width: 75%;
+}
+
+.commentSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentTitleSkeleton {
+  width: 120px;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.commentItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.commentAvatarSkeleton {
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+
+.commentTextSkeleton {
+  flex: 1;
+  height: 16px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive design */
+@media screen and (max-width: 1024px) {
+  .infoContainer {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .imageSkeleton {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .content {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    gap: 20px;
+  }
+  
+  .imageSkeleton {
+    height: 150px;
+  }
+  
+  .titleSkeleton {
+    width: 80%;
+  }
+}

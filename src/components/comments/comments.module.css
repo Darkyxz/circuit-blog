@@ -1,5 +1,7 @@
 .container {
   margin-top: 50px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .title {
@@ -17,6 +19,21 @@
 .input {
   padding: 20px;
   width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  font-size: 16px;
+  background-color: var(--bg);
+  color: var(--textColor);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .button {
@@ -29,12 +46,37 @@
   cursor: pointer;
 }
 
-.comments{
+.comments {
   margin-top: 50px;
+  position: relative;
+  padding-bottom: 30px;
 }
 
-.comment{
-  margin-bottom: 50px;
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: var(--softBg);
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.comment:hover {
+  border-left-color: var(--softTextColor);
+}
+
+.reply {
+  background-color: var(--bg);
+  border: 1px solid var(--softTextColor);
+  border-radius: 6px;
+  margin-top: 10px;
 }
 
 .user {
@@ -67,4 +109,397 @@
 .desc{
   font-size: 18px;
   font-weight: 300;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.6;
+  max-width: 100%;
+  white-space: pre-wrap;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--softTextColor);
+  font-style: italic;
+}
+
+.noComments {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--softTextColor);
+  font-style: italic;
+  background-color: var(--softBg);
+  border-radius: var(--radius);
+  margin-top: 20px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--gray-400);
+}
+
+.button:disabled:hover {
+  background-color: var(--gray-400);
+}
+
+/* Estilos para comentarios anidados */
+.replies {
+  margin-top: 15px;
+  padding-left: 20px;
+  border-left: 2px solid var(--softTextColor);
+}
+
+.edited {
+  font-size: 12px;
+  color: var(--softTextColor);
+  font-style: italic;
+  margin-left: 10px;
+}
+
+/* Botones de acción */
+.commentActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.replyBtn, .editBtn, .deleteBtn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.replyBtn {
+  background-color: var(--softTextColor);
+  color: var(--bg);
+}
+
+.replyBtn:hover {
+  background-color: var(--textColor);
+}
+
+.editBtn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.editBtn:hover {
+  background-color: #2563eb;
+}
+
+.deleteBtn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background-color: #dc2626;
+}
+
+/* Formularios de edición y respuesta */
+.editForm, .replyForm {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: var(--bg);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.editInput, .replyInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+  font-size: 14px;
+  background-color: var(--bg);
+  color: var(--textColor);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.editActions, .replyActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.saveBtn, .replySubmitBtn {
+  padding: 8px 16px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.saveBtn:hover, .replySubmitBtn:hover {
+  background-color: #059669;
+}
+
+.cancelBtn, .replyCancelBtn {
+  padding: 8px 16px;
+  background-color: var(--softBg);
+  color: var(--textColor);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancelBtn:hover, .replyCancelBtn:hover {
+  background-color: var(--softTextColor);
+  color: var(--bg);
+}
+
+.saveBtn:disabled, .replySubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--softTextColor);
+}
+
+.loginPrompt {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--softBg);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.loginPrompt a {
+  color: var(--textColor);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--textColor);
+}
+
+.loginPrompt a:hover {
+  color: var(--softTextColor);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .container {
+    margin-top: 30px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .write {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .input {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .button {
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .comments {
+    margin-top: 30px;
+  }
+  
+  .comment {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: var(--softBg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  
+  .replies {
+    padding-left: 15px;
+    border-left: 2px solid var(--softTextColor);
+  }
+  
+  .commentActions {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .replyBtn, .editBtn, .deleteBtn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .editForm, .replyForm {
+    padding: 10px;
+  }
+  
+  .editInput, .replyInput {
+    padding: 8px;
+    font-size: 14px;
+    min-height: 50px;
+  }
+  
+  .editActions, .replyActions {
+    gap: 8px;
+  }
+  
+  .saveBtn, .replySubmitBtn, .cancelBtn, .replyCancelBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .user {
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .desc {
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .username {
+    font-size: 16px;
+  }
+  
+  .date {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    margin-top: 20px;
+    padding: 0 5px;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .write {
+    gap: 12px;
+  }
+  
+  .input {
+    padding: 12px;
+    font-size: 14px;
+    min-height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .button {
+    padding: 10px 14px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .comments {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+  
+  .replies {
+    padding-left: 10px;
+    border-left: 1px solid var(--softTextColor);
+  }
+  
+  .commentActions {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .replyBtn, .editBtn, .deleteBtn {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+  
+  .editForm, .replyForm {
+    padding: 8px;
+  }
+  
+  .editInput, .replyInput {
+    padding: 6px;
+    font-size: 12px;
+    min-height: 40px;
+  }
+  
+  .editActions, .replyActions {
+    gap: 6px;
+  }
+  
+  .saveBtn, .replySubmitBtn, .cancelBtn, .replyCancelBtn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .user {
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .image {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .desc {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .username {
+    font-size: 14px;
+  }
+  
+  .date {
+    font-size: 12px;
+  }
+  
+  .noComments {
+    padding: 20px 15px;
+    font-size: 14px;
+  }
+  
+  .loading {
+    padding: 15px;
+    font-size: 14px;
+  }
 }

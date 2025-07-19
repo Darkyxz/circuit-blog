@@ -6,6 +6,13 @@
   gap: 35px;
 }
 
+/* Protect menu posts from global text wrapping styles */
+.items * {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: normal;
+}
+
 .item {
   display: flex;
   align-items: center;
@@ -16,6 +23,10 @@
   flex: 1;
   aspect-ratio: 1/1;
   position: relative;
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
   max-width: 60px;
   max-height: 60px;
   overflow: hidden;

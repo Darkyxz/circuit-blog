@@ -59,18 +59,142 @@
 
 .content {
   display: flex;
-  gap: 50px;
+  gap: 30px;
 }
 
 .post {
-  flex: 5;
+  flex: 3;
   margin-top: 60px;
+  min-width: 0; /* Prevent flex item from overflowing */
+  max-width: 70%;
+}
+
+.description {
+  /* Ensure content doesn't overflow */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  overflow-x: hidden;
 }
 
 .description p {
   font-size: 20px;
   font-weight: 300;
   margin-bottom: 20px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.description h1,
+.description h2,
+.description h3,
+.description h4,
+.description h5,
+.description h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.description h1 { font-size: 2rem; }
+.description h2 { font-size: 1.75rem; }
+.description h3 { font-size: 1.5rem; }
+.description h4 { font-size: 1.25rem; }
+.description h5 { font-size: 1.125rem; }
+.description h6 { font-size: 1rem; }
+
+.description ul,
+.description ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.description li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.description blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--softTextColor);
+}
+
+.description code {
+  background-color: var(--softBg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.description pre {
+  background-color: var(--softBg);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.description pre code {
+  background: none;
+  padding: 0;
+}
+
+.description img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Universal text wrapping for all description elements */
+.description * {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.description table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.description th,
+.description td {
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.description th {
+  background-color: var(--softBg);
+  font-weight: 600;
+}
+
+.comment {
+  margin-top: 40px;
+  /* Ensure comments don't overflow */
+  max-width: 100%;
+  overflow-x: hidden;
+  /* Reduce comment area width */
+  width: 85%;
 }
 
 @media screen and (max-width: 1536px) {
@@ -87,13 +211,198 @@
   .imageContainer {
     display: none;
   }
+  
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .post {
+    flex: none;
+    margin-top: 40px;
+    max-width: 100%;
+  }
+  
+  .comment {
+    width: 100%;
+  }
+  
+  .infoContainer {
+    gap: 30px;
+  }
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .title {
+    font-size: 42px;
+    margin-bottom: 30px;
+  }
+  
+  .content {
+    gap: 20px;
+  }
+  
+  .post {
+    margin-top: 30px;
+  }
+  
+  .description p {
+    font-size: 18px;
+  }
+  
+  .description h1 { font-size: 1.75rem; }
+  .description h2 { font-size: 1.5rem; }
+  .description h3 { font-size: 1.25rem; }
+  .description h4 { font-size: 1.125rem; }
+  .description h5 { font-size: 1rem; }
+  .description h6 { font-size: 0.9rem; }
+  
+  .description ul,
+  .description ol {
+    padding-left: 1.5rem;
+  }
+  
+  .description pre {
+    padding: 0.75rem;
+    font-size: 14px;
+  }
+  
+  .description table {
+    font-size: 14px;
+  }
+  
+  .description th,
+  .description td {
+    padding: 0.5rem;
+  }
+  
+  .comment {
+    margin-top: 30px;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .title {
     font-size: 36px;
   }
 
   .description p{
+    font-size: 16px;
+  }
+  
+  .description h1 { font-size: 1.5rem; }
+  .description h2 { font-size: 1.25rem; }
+  .description h3 { font-size: 1.125rem; }
+  .description h4 { font-size: 1rem; }
+  .description h5 { font-size: 0.9rem; }
+  .description h6 { font-size: 0.8rem; }
+  
+  .description ul,
+  .description ol {
+    padding-left: 1.2rem;
+  }
+  
+  .description pre {
+    padding: 0.5rem;
+    font-size: 13px;
+  }
+  
+  .description table {
+    font-size: 13px;
+  }
+  
+  .description th,
+  .description td {
+    padding: 0.4rem;
+  }
+  
+  .userTextContainer {
+    font-size: 14px;
+  }
+  
+  .username {
     font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .content {
+    gap: 15px;
+  }
+  
+  .post {
+    margin-top: 20px;
+  }
+  
+  .description p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .description h1 { font-size: 1.25rem; }
+  .description h2 { font-size: 1.125rem; }
+  .description h3 { font-size: 1rem; }
+  .description h4 { font-size: 0.9rem; }
+  .description h5 { font-size: 0.8rem; }
+  .description h6 { font-size: 0.75rem; }
+  
+  .description ul,
+  .description ol {
+    padding-left: 1rem;
+  }
+  
+  .description pre {
+    padding: 0.4rem;
+    font-size: 12px;
+  }
+  
+  .description code {
+    font-size: 12px;
+  }
+  
+  .description table {
+    font-size: 12px;
+  }
+  
+  .description th,
+  .description td {
+    padding: 0.3rem;
+  }
+  
+  .description blockquote {
+    padding-left: 0.75rem;
+    margin: 1rem 0;
+  }
+  
+  .comment {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .user {
+    gap: 15px;
+  }
+  
+  .userImageContainer {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .username {
+    font-size: 16px;
   }
 }

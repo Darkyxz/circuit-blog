@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./writePage.module.css";
 import { useEffect, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import dynamicImport from "next/dynamic";
 import Loading from "@/components/loading/Loading";
@@ -18,6 +18,11 @@ const ReactQuill = dynamicImport(() => import("react-quill"), { ssr: false });
 const WritePage = () => {
   const { status } = useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // Detectar si estamos en modo edición
+  const editSlug = searchParams.get('edit');
+  const isEditing = !!editSlug;
 
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
@@ -27,6 +32,39 @@ const WritePage = () => {
   const [catSlug, setCatSlug] = useState("programming");
   const [uploading, setUploading] = useState(false);
   const [publishing, setPublishing] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [originalSlug, setOriginalSlug] = useState("");
+
+  // Cargar datos del post si estamos en modo edición
+  useEffect(() => {
+    const loadPostData = async () => {
+      if (!isEditing || !editSlug) return;
+      
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/posts/${editSlug}`);
+        if (response.ok) {
+          const post = await response.json();
+          setTitle(post.title);
+          setValue(post.desc);
+          setMedia(post.img || "");
+          setCatSlug(post.catSlug);
+          setOriginalSlug(post.slug);
+        } else {
+          alert('Error cargando el post para editar');
+          router.push('/admin/posts');
+        }
+      } catch (error) {
+        console.error('Error loading post:', error);
+        alert('Error cargando el post');
+        router.push('/admin/posts');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPostData();
+  }, [isEditing, editSlug, router]);
 
   useEffect(() => {
     const uploadToCloudinary = async () => {
@@ -64,7 +102,7 @@ const WritePage = () => {
     uploadToCloudinary();
   }, [file]);
 
-  if (status === "loading") {
+  if (status === "loading" || loading) {
     return <Loading />;
   }
 
@@ -94,44 +132,48 @@ const WritePage = () => {
     }
 
     setPublishing(true);
-    console.log('Submitting post with data:', {
+    
+    const postData = {
       title,
       desc: value,
       img: media,
-      slug: slugify(title),
-      catSlug: catSlug || "programming"
-    });
+      catSlug: catSlug || "programming",
+    };
+
+    // Si no estamos editando, agregar el slug
+    if (!isEditing) {
+      postData.slug = slugify(title);
+    }
+
+    console.log(`${isEditing ? 'Updating' : 'Creating'} post with data:`, postData);
 
     try {
-      const res = await fetch("/api/posts", {
-        method: "POST",
+      const url = isEditing ? `/api/posts/${originalSlug}` : "/api/posts";
+      const method = isEditing ? "PUT" : "POST";
+      
+      const res = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          title,
-          desc: value,
-          img: media,
-          slug: slugify(title),
-          catSlug: catSlug || "programming",
-        }),
+        body: JSON.stringify(postData),
       });
 
       console.log('Response status:', res.status);
 
       if (res.status === 200) {
         const data = await res.json();
-        console.log('Post created successfully:', data);
+        console.log(`Post ${isEditing ? 'updated' : 'created'} successfully:`, data);
         router.push(`/posts/${data.slug}`);
       } else {
-        console.error('Error creating post:', res.status, res.statusText);
+        console.error(`Error ${isEditing ? 'updating' : 'creating'} post:`, res.status, res.statusText);
         const errorData = await res.text();
         console.error('Error details:', errorData);
-        alert(`Error creando el post: ${res.status} ${res.statusText}`);
+        alert(`Error ${isEditing ? 'actualizando' : 'creando'} el post: ${res.status} ${res.statusText}`);
       }
     } catch (error) {
       console.error('Network error:', error);
-      alert('Error de red: No se pudo crear el post');
+      alert(`Error de red: No se pudo ${isEditing ? 'actualizar' : 'crear'} el post`);
     } finally {
       setPublishing(false);
     }
@@ -140,8 +182,15 @@ const WritePage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.headerTitle}>📝 Crear Nuevo Post</h1>
-        <p className={styles.headerDesc}>Comparte tus conocimientos con la comunidad tech</p>
+        <h1 className={styles.headerTitle}>
+          {isEditing ? '✏️ Editar Post' : '📝 Crear Nuevo Post'}
+        </h1>
+        <p className={styles.headerDesc}>
+          {isEditing 
+            ? 'Actualiza tu contenido y mejora tu post' 
+            : 'Comparte tus conocimientos con la comunidad tech'
+          }
+        </p>
       </div>
 
       <div className={styles.form}>
@@ -257,6 +306,7 @@ const WritePage = () => {
                     ['blockquote', 'code-block'],
                     [{ 'header': 1 }, { 'header': 2 }],
                     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'color': [] }, { 'background': [] }],
                     ['link'],
                     ['clean']
                   ]
@@ -267,21 +317,31 @@ const WritePage = () => {
         </div>
 
         <div className={styles.actions}>
-          <button 
-            className={styles.saveDraft}
-            onClick={() => alert('Función de guardar borrador próximamente')}
-          >
-            💾 Guardar Borrador
-          </button>
+          {isEditing && (
+            <button 
+              className={styles.saveDraft}
+              onClick={() => router.push('/admin/posts')}
+            >
+              ← Volver a Posts
+            </button>
+          )}
+          {!isEditing && (
+            <button 
+              className={styles.saveDraft}
+              onClick={() => alert('Función de guardar borrador próximamente')}
+            >
+              💾 Guardar Borrador
+            </button>
+          )}
           <button 
             className={styles.publish} 
             onClick={handleSubmit}
             disabled={publishing || !title.trim() || !value.trim()}
           >
             {publishing ? (
-              <span>🚀 Publicando...</span>
+              <span>{isEditing ? '🔄 Actualizando...' : '🚀 Publicando...'}</span>
             ) : (
-              <span>📢 Publicar Post</span>
+              <span>{isEditing ? '✅ Actualizar Post' : '📢 Publicar Post'}</span>
             )}
           </button>
         </div>

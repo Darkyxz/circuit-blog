@@ -61,12 +61,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  font-size: 24px;
+  gap: 30px;
+  font-size: 18px;
   z-index: 1000;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   animation: slideIn 0.3s ease;
   border-left: 1px solid var(--softTextColor);
+}
+
+/* Protect responsive menu from global text wrapping styles */
+.responsiveMenu * {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 .responsiveMenu a,
@@ -115,6 +122,14 @@
   .responsiveMenu {
     width: 100vw;
     animation: slideDown 0.3s ease;
+    font-size: 16px;
+    gap: 25px;
+  }
+
+  .responsiveMenu a,
+  .responsiveMenu span {
+    padding: 10px 16px;
+    font-size: 16px;
   }
 }
 

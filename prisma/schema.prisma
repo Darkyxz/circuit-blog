@@ -43,6 +43,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
+  password      String?
   role          UserRole  @default(USER)
   bio           String?
   website       String?
@@ -54,6 +55,7 @@ model User {
   sessions      Session[]
   Post          Post[]
   Comment       Comment[]
+  likes         Like[]
 }
 
 enum UserRole {
@@ -96,6 +98,7 @@ model Post {
   userEmail String
   user      User       @relation(fields: [userEmail], references: [email])
   comments  Comment[]
+  postLikes Like[]
 }
 
 enum PostStatus {
@@ -114,10 +117,24 @@ model Comment {
   user      User          @relation(fields: [userEmail], references: [email])
   postSlug  String
   post      Post          @relation(fields: [postSlug], references: [slug])
+  parentId  String?
+  parent    Comment?      @relation("CommentReplies", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Comment[]     @relation("CommentReplies")
 }
 
 enum CommentStatus {
   PENDING
   APPROVED
   REJECTED
+}
+
+model Like {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  userEmail String
+  postSlug  String
+  user      User     @relation(fields: [userEmail], references: [email])
+  post      Post     @relation(fields: [postSlug], references: [slug])
+  
+  @@unique([userEmail, postSlug])
 }

@@ -29,9 +29,6 @@ const nextConfig = {
     minimumCacheTTL: 60,
     formats: ['image/webp', 'image/avif']
   },
-  experimental: {
-    optimizePackageImports: ['next/image']
-  },
   // Configuración para mejorar la compilación en Render
   output: 'standalone',
   poweredByHeader: false,

@@ -6,6 +6,7 @@ import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import LoadingBoundary from "../ui/LoadingBoundary";
 import Loading from "../loading/Loading";
+import { useDataProcessor } from "@/hooks/useWorker";
 
 const CardList = ({ page = 1, cat }) => {
   const [posts, setPosts] = useState([]);
@@ -13,6 +14,8 @@ const CardList = ({ page = 1, cat }) => {
   const [error, setError] = useState(null);
   const [totalPages, setTotalPages] = useState(0);
   const [count, setCount] = useState(0);
+  const [rawPosts, setRawPosts] = useState([]);
+  const { processPosts } = useDataProcessor();
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -37,29 +40,40 @@ const CardList = ({ page = 1, cat }) => {
         
         const data = await res.json();
         
-        // Process posts on main thread for now (simpler and more reliable)
-        const processedPosts = data.posts.map(post => {
-          // Add reading time calculation
-          const wordsPerMinute = 200;
-          const textLength = post.desc?.replace(/<[^>]*>/g, '').length || 0;
-          const readingTime = Math.ceil(textLength / wordsPerMinute) || 1;
-          
-          // Extract excerpt
-          const excerpt = post.desc
-            ?.replace(/<[^>]*>/g, '')
-            ?.substring(0, 150) + '...' || '';
-          
-          return {
-            ...post,
-            readingTime,
-            excerpt
-          };
-        });
-        
-        setPosts(processedPosts);
+        // Store raw posts and process them with web worker
+        setRawPosts(data.posts);
         setCount(data.count);
         setTotalPages(data.totalPages || Math.ceil(data.count / 6));
-        setLoading(false);
+        
+        // Process posts using web worker for better performance
+        if (data.posts && data.posts.length > 0) {
+          processPosts(data.posts, (processedPosts, error) => {
+            if (error) {
+              console.error('Worker error:', error);
+              // Fallback to main thread processing
+              const fallbackPosts = data.posts.map(post => {
+                const wordsPerMinute = 200;
+                const textLength = post.desc?.replace(/<[^>]*>/g, '').length || 0;
+                const readingTime = Math.ceil(textLength / wordsPerMinute) || 1;
+                const excerpt = post.desc
+                  ?.replace(/<[^>]*>/g, '')
+                  ?.substring(0, 150) + '...' || '';
+                return {
+                  ...post,
+                  readingTime,
+                  excerpt
+                };
+              });
+              setPosts(fallbackPosts);
+            } else {
+              setPosts(processedPosts);
+            }
+            setLoading(false);
+          });
+        } else {
+          setPosts([]);
+          setLoading(false);
+        }
         
       } catch (err) {
         console.error('Error loading posts:', err);

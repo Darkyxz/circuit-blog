@@ -173,6 +173,9 @@ const AdminPosts = () => {
                     <Link href={`/posts/${post.slug}`} className={styles.viewBtn}>
                       👁️
                     </Link>
+                    <Link href={`/write?edit=${post.slug}`} className={styles.editBtn}>
+                      ✏️
+                    </Link>
                     <button 
                       className={styles.deleteBtn}
                       onClick={() => handleDelete(post.id, post.title)}

@@ -1,0 +1,126 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.searchBox {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  padding-right: 3rem; /* Space for clear button */
+  font-size: 1.1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg);
+  color: var(--textColor);
+  transition: var(--transition);
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.searchInput::placeholder {
+  color: var(--softTextColor);
+}
+
+.clearButton {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--softTextColor);
+  cursor: pointer;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.clearButton:hover {
+  background-color: var(--hover);
+  color: var(--textColor);
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--softTextColor);
+  font-size: 1.1rem;
+}
+
+.searchingIndicator {
+  text-align: center;
+  padding: 1rem;
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.resultsHeader {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--softBg);
+  border-radius: var(--radius-md);
+  color: var(--textColor);
+  font-weight: 500;
+  border: 1px solid var(--border);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 1rem 0;
+  }
+  
+  .searchInput {
+    font-size: 1rem;
+    padding: 0.875rem 1.25rem;
+    padding-right: 2.5rem;
+  }
+  
+  .clearButton {
+    right: 0.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .results {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .resultsHeader {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+  
+  .searchInput {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    padding-right: 2.25rem;
+  }
+}

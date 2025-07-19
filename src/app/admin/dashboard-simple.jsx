@@ -30,19 +30,21 @@ const SimpleDashboard = () => {
       setError(null);
 
       // Obtener estadísticas básicas
-      const [postsRes, usersRes] = await Promise.all([
+      const [postsRes, usersRes, commentsRes] = await Promise.all([
         fetch('/api/posts?page=1'),
-        fetch('/api/debug/users')
+        fetch('/api/debug/users'),
+        fetch('/api/admin/comments')
       ]);
 
       const postsData = postsRes.ok ? await postsRes.json() : { count: 0, posts: [] };
       const usersData = usersRes.ok ? await usersRes.json() : { users: [] };
+      const commentsData = commentsRes.ok ? await commentsRes.json() : [];
 
       setStats({
         totalPosts: postsData.count || 0,
         totalUsers: usersData.users?.length || 0,
-        totalComments: 0,
-        pendingComments: 0,
+        totalComments: commentsData.length || 0,
+        pendingComments: commentsData.filter(c => c.status === 'PENDING').length || 0,
         recentPosts: postsData.posts?.slice(0, 5) || []
       });
 
@@ -112,6 +114,14 @@ const SimpleDashboard = () => {
         <Link href="/admin/posts" className={styles.navCard}>
           <h3>📝 Gestionar Posts</h3>
           <p>Ver, editar y eliminar posts</p>
+        </Link>
+        <Link href="/admin/users" className={styles.navCard}>
+          <h3>👥 Gestionar Usuarios</h3>
+          <p>Ver, editar y roles de usuarios</p>
+        </Link>
+        <Link href="/admin/comments" className={styles.navCard}>
+          <h3>💬 Moderar Comentarios</h3>
+          <p>Aprobar, rechazar y gestionar comentarios</p>
         </Link>
         <Link href="/write" className={styles.navCard}>
           <h3>✍️ Escribir Post</h3>

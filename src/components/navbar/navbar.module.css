@@ -14,6 +14,13 @@
   transition: var(--transition);
 }
 
+/* Protect navbar from global text wrapping styles */
+.container * {
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
 .social {
   display: flex;
   gap: 12px;
@@ -114,18 +121,26 @@
   .container {
     padding: 0 12px;
   }
+  .links {
+    font-size: 15px;
+    gap: 12px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .container {
-    height: 80px;
+    height: 70px;
     padding: 0 10px;
   }
   .logo {
-    font-size: 24px;
+    font-size: 22px;
   }
   .links {
-    gap: 10px;
+    gap: 8px;
+  }
+  .link {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 }
 

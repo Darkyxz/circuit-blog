@@ -1,0 +1,229 @@
+.likeButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.button:hover {
+  background-color: var(--hover);
+  transform: scale(1.05);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button:disabled:hover {
+  background: none;
+  transform: none;
+}
+
+.icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconLiked {
+  animation: likeAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animating {
+  animation: bounceAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animating .icon {
+  animation: heartPulse 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Spinner */
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+}
+
+.spinnerInner {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--primary);
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Count */
+.count {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--textColor);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.countVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Size variants */
+.small .button {
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+}
+
+.small .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.small .count {
+  font-size: 0.75rem;
+}
+
+.medium .button {
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.medium .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.medium .count {
+  font-size: 0.875rem;
+}
+
+.large .button {
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+}
+
+.large .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.large .count {
+  font-size: 1rem;
+}
+
+/* Animations */
+@keyframes likeAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceAnimation {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Liked state */
+.liked {
+  color: #ff6b6b;
+}
+
+.liked:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* Dark mode adjustments */
+.dark .button:hover {
+  background-color: var(--hover);
+}
+
+.dark .liked:hover {
+  background-color: rgba(255, 107, 107, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .likeButton {
+    gap: 6px;
+  }
+  
+  .medium .button {
+    padding: 6px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .medium .icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .large .button {
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .large .icon {
+    width: 20px;
+    height: 20px;
+  }
+}

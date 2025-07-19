@@ -1,26 +1,26 @@
 import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
+import { postsQuerySchema, createPostSchema, sanitizeHtml } from "@/schemas/post";
+import { asyncHandler, validateQuery, validateBody } from "@/utils/errors/error-handler";
+import { NotFoundError, DatabaseError, ConflictError, AuthenticationError } from "@/utils/errors/custom-errors";
 
-export const GET = async (req) => {
-  const { searchParams } = new URL(req.url);
-
-  const page = parseInt(searchParams.get("page")) || 1;
-  const cat = searchParams.get("cat");
-  const search = searchParams.get("search");
-
-  const POST_PER_PAGE = 6; // Incrementamos para mejor UX
+export const GET = asyncHandler(async (req) => {
+  // Validar query parameters
+  const validatedQuery = validateQuery(postsQuerySchema, req.url);
+  const { page = 1, cat, search, limit = 6, status = 'PUBLISHED', featured } = validatedQuery;
 
   // Construir query optimizada
   const whereClause = {
-    status: 'PUBLISHED', // Solo posts publicados
+    status: status,
     ...(cat && { catSlug: cat }),
     ...(search && {
       OR: [
         { title: { contains: search, mode: 'insensitive' } },
         { desc: { contains: search, mode: 'insensitive' } }
       ]
-    })
+    }),
+    ...(featured !== undefined && { featured })
   };
 
   const selectFields = {
@@ -30,12 +30,17 @@ export const GET = async (req) => {
     img: true,
     slug: true,
     createdAt: true,
+    updatedAt: true,
     catSlug: true,
     views: true,
+    likes: true,
+    status: true,
+    featured: true,
     user: {
       select: {
         name: true,
-        email: true
+        email: true,
+        image: true
       }
     },
     cat: {
@@ -53,23 +58,30 @@ export const GET = async (req) => {
         where: whereClause,
         select: selectFields,
         orderBy: { createdAt: 'desc' },
-        take: POST_PER_PAGE,
-        skip: POST_PER_PAGE * (page - 1)
+        take: limit,
+        skip: limit * (page - 1)
       }),
       prisma.post.count({ where: whereClause })
     ]);
 
-    const totalPages = Math.ceil(count / POST_PER_PAGE);
+    const totalPages = Math.ceil(count / limit);
 
-    return new NextResponse(
-      JSON.stringify({ 
-        posts, 
+    // Sanitizar contenido HTML
+    const sanitizedPosts = posts.map(post => ({
+      ...post,
+      desc: sanitizeHtml(post.desc)
+    }));
+
+    return NextResponse.json(
+      { 
+        posts: sanitizedPosts, 
         count, 
         totalPages,
         currentPage: page,
         hasNextPage: page < totalPages,
-        hasPrevPage: page > 1
-      }), 
+        hasPrevPage: page > 1,
+        limit
+      }, 
       { 
         status: 200,
         headers: {
@@ -79,45 +91,83 @@ export const GET = async (req) => {
       }
     );
   } catch (err) {
-    console.error('Posts API Error:', err);
-    return new NextResponse(
-      JSON.stringify({ 
-        message: "Error fetching posts",
-        error: process.env.NODE_ENV === 'development' ? err.message : undefined
-      }), 
-      { status: 500 }
-    );
+    throw new DatabaseError('Failed to fetch posts', err);
   }
-};
+});
 
 // CREATE A POST
-export const POST = async (req) => {
-  console.log('POST /api/posts - Request received');
-  
+export const POST = asyncHandler(async (req) => {
   const session = await getAuthSession();
-  console.log('Session:', session ? 'Authenticated' : 'Not authenticated');
 
   if (!session) {
-    console.log('Returning 401 - Not authenticated');
-    return new NextResponse(
-      JSON.stringify({ message: "Not Authenticated!" }), { status: 401 }
-    );
+    throw new AuthenticationError('Authentication required to create posts');
   }
 
+  // Validar body del request
+  const validatedData = await validateBody(createPostSchema, req);
+  const { title, desc, img, catSlug, slug, status = 'PUBLISHED', featured = false } = validatedData;
+
+  // Sanitizar contenido HTML
+  const sanitizedDesc = sanitizeHtml(desc);
+
   try {
-    const body = await req.json();
-    console.log('Request body:', body);
-    
+    // Verificar que el slug no exista
+    const existingPost = await prisma.post.findUnique({
+      where: { slug },
+      select: { id: true }
+    });
+
+    if (existingPost) {
+      throw new ConflictError('A post with this slug already exists');
+    }
+
+    // Verificar que la categoría exista
+    const category = await prisma.category.findUnique({
+      where: { slug: catSlug },
+      select: { id: true }
+    });
+
+    if (!category) {
+      throw new NotFoundError('Category');
+    }
+
+    // Crear el post
     const post = await prisma.post.create({
-      data: { ...body, userEmail: session.user.email },
+      data: {
+        title,
+        desc: sanitizedDesc,
+        img: img || null,
+        slug,
+        catSlug,
+        status,
+        featured,
+        userEmail: session.user.email
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            image: true
+          }
+        },
+        cat: {
+          select: {
+            title: true,
+            slug: true
+          }
+        }
+      }
     });
     
-    console.log('Post created successfully:', post.id);
-    return new NextResponse(JSON.stringify(post), { status: 200 });
+    return NextResponse.json({
+      message: 'Post created successfully',
+      post
+    }, { status: 201 });
   } catch (err) {
-    console.error('Error creating post:', err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!", error: err.message }), { status: 500 }
-    );
+    if (err.code === 'P2002') {
+      throw new ConflictError('Post with this slug already exists');
+    }
+    throw new DatabaseError('Failed to create post', err);
   }
-};
+});
