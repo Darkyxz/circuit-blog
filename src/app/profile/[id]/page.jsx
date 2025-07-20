@@ -15,36 +15,36 @@ const UserProfile = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const [userResponse, postsResponse] = await Promise.all([
+          fetch(`/api/users/${params.id}`),
+          fetch(`/api/users/${params.id}/posts`)
+        ]);
+
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          setUser(userData);
+        } else {
+          setError('Usuario no encontrado');
+        }
+
+        if (postsResponse.ok) {
+          const postsData = await postsResponse.json();
+          setPosts(postsData);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+        setError('Error cargando el perfil');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (params.id) {
       fetchUserProfile();
     }
   }, [params.id]);
-
-  const fetchUserProfile = async () => {
-    try {
-      const [userResponse, postsResponse] = await Promise.all([
-        fetch(`/api/users/${params.id}`),
-        fetch(`/api/users/${params.id}/posts`)
-      ]);
-
-      if (userResponse.ok) {
-        const userData = await userResponse.json();
-        setUser(userData);
-      } else {
-        setError('Usuario no encontrado');
-      }
-
-      if (postsResponse.ok) {
-        const postsData = await postsResponse.json();
-        setPosts(postsData);
-      }
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-      setError('Error cargando el perfil');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (loading) {
     return (

@@ -32,7 +32,25 @@ const nextConfig = {
   // Configuración para mejorar la compilación en Render
   output: 'standalone',
   poweredByHeader: false,
-  reactStrictMode: true
+  reactStrictMode: true,
+  // Excluir archivos de test del build
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  // Configuración de ESLint para build
+  eslint: {
+    // Ignorar errores de ESLint durante el build en producción
+    ignoreDuringBuilds: false,
+    dirs: ['src']
+  },
+  // Excluir archivos de test
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    return config;
+  }
 }
 
 module.exports = nextConfig

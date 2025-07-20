@@ -33,7 +33,7 @@ const SinglePage = async ({ params }) => {
         <div className={styles.container}>
           <div className={styles.error}>
             <h1>Post Not Found</h1>
-            <p>The post you're looking for doesn't exist.</p>
+            <p>The post you&apos;re looking for doesn&apos;t exist.</p>
           </div>
         </div>
       );

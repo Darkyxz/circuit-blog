@@ -23,27 +23,27 @@ const UserDetail = () => {
       return;
     }
 
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`/api/admin/users/${params.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        } else {
+          setError('Usuario no encontrado');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setError('Error cargando usuario');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (isAdmin && params.id) {
       fetchUser();
     }
   }, [isAdmin, isLoading, router, params.id]);
-
-  const fetchUser = async () => {
-    try {
-      const response = await fetch(`/api/admin/users/${params.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data);
-      } else {
-        setError('Usuario no encontrado');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Error cargando usuario');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const updateUser = async (updates) => {
     setUpdating(true);

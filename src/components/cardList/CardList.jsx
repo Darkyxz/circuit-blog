@@ -83,7 +83,7 @@ const CardList = ({ page = 1, cat }) => {
     };
 
     loadPosts();
-  }, [page, cat]);
+  }, [page, cat, processPosts]);
 
   if (loading) {
     return <Loading />;

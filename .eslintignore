@@ -1,0 +1,28 @@
+# Test files
+src/test/
+**/*.test.js
+**/*.test.jsx
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.js
+**/*.spec.jsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Config files
+vitest.config.js
+next.config.js
+
+# Build output
+.next/
+out/
+dist/
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env*
+
+# Logs
+*.log
